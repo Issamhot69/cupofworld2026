@@ -1,0 +1,30 @@
+import axios from 'axios'
+
+const api = axios.create({
+  baseURL: 'http://localhost:5002',
+  headers: { 'Content-Type': 'application/json' }
+})
+
+api.interceptors.request.use(config => {
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('wf_token')
+    if (token) config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
+
+export const getPosts       = (params?: any) => api.get('/api/posts', { params })
+export const uploadPost     = (form: FormData) => api.post('/api/posts/upload', form, { headers: { 'Content-Type': 'multipart/form-data' } })
+export const likePost       = (id: string)   => api.post(`/api/posts/${id}/like`)
+export const getLiveMatches = ()             => api.get('/api/match/live')
+export const getUsers       = (params?: any) => api.get('/api/user', { params })
+export const banUser        = (id: string)   => api.post(`/api/user/${id}/ban`)
+export const getDashboard   = ()             => api.get('/api/posts/stats/global')
+export const getArticles    = (params?: any) => api.get('/api/magazine', { params })
+export const getTickets     = ()             => api.get('/api/tickets')
+export const buyTicket      = (data: any)    => api.post('/api/tickets/buy', data)
+export const getProducts    = (params?: any) => api.get('/api/shop', { params })
+export const buyProduct     = (data: any)    => api.post('/api/shop/cart', data)
+export const sendAIMessage  = (data: any)    => api.post('/api/ai/chat', data)
+
+export default api
