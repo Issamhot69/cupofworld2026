@@ -12,6 +12,9 @@
   --wf-dark: #0a0a0f;
   --wf-card: #111118;
   --wf-border: rgba(255,255,255,0.07);
+  --usa-red: #B22234;
+  --usa-blue: #3C3B6E;
+  --usa-white: #f1f5f9;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,9 +53,4 @@ html, body {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%);
   pointer-events: none;
-}
-:root {
-  --usa-red:   #B22234;
-  --usa-blue:  #3C3B6E;
-  --usa-white: #f1f5f9;
 }
